@@ -1,0 +1,57 @@
+﻿@page "/hamsters"
+@inject IHamsterService HamsterService
+@inject NavigationManager NavigationManager
+@using HamsterWarz.Client.Services;
+<PageTitle>Hamster</PageTitle>
+
+<h3>Hamsters</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Loves</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hamster in HamsterService.Hamsters)
+        {
+            <tr>
+                <td>@hamster.Name</td>
+                <td>@hamster.Age</td>
+                <td>@hamster.Loves</td>
+                <img src=@ShowImage(hamster.ImgName)>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => ShowHamster(hamster.Id))"><i class="oi oi-pencil"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" @onclick="CreateNewHamster">Create New Hamster</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await HamsterService.GetHamsters();
+    }
+
+    void ShowHamster(int id)
+    {
+        NavigationManager.NavigateTo($"hamster/{id}");
+    }
+
+    void CreateNewHamster()
+    {
+        NavigationManager.NavigateTo("/hamster");
+    }
+    private string? imageSource;
+
+    private string ShowImage(string imgName)
+    {
+        imageSource = $"/hamsters/{imgName}";
+        return imageSource;
+    }
+}
