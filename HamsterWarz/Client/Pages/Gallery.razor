@@ -1,0 +1,57 @@
+﻿@page "/Gallery"
+@inject IHamsterService HamsterService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Gallery</PageTitle>
+
+<button>
+    Test
+</button>
+<br />
+<br />
+<div class="row">
+    @foreach (var hamster in HamsterService.Hamsters)
+    {
+        <div class="col-md-3">
+            <div class="gallery">
+                <div class="card" style="width:100">
+                    <img class="card-img-top" src="@ShowImage(hamster.ImgName)">
+                    <div class="card-body">
+                        <h4 class="card-title">@hamster.Name</h4>
+                        <p class="card-text">Favorite food: @hamster.FavFood. <br /> Likes: @hamster.Loves</p>
+                        <a href="#" class="btn btn-primary">Edit</a>
+                        <button class="btn btn-primary " @onclick="(() => DeleteHamster(hamster.Id))">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await HamsterService.GetHamsters();
+        HamsterService.OnChange += StateHasChanged;
+    }
+    private string? imageSource;
+    private string ShowImage(string imgName)
+    {
+        imageSource = $"/hamsters/{imgName}";
+        return imageSource;
+    }
+
+    void DeleteHamster(int id)
+    {
+        HamsterService.DeleteHamster(id);
+    }
+
+    public void Dispose()
+    {
+        HamsterService.OnChange -= StateHasChanged;
+    }
+}

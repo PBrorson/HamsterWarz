@@ -62,3 +62,164 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/*New Shit*/
+div.gallery {
+    margin: 5px;
+    border: 4px solid #ccc;
+    float: left;
+    width: 280px;
+}
+
+    div.gallery:hover {
+        border: 4px solid #777;
+    }
+
+    div.gallery img {
+        width: 100%;
+        height: 100%;
+    }
+
+
+.WinCard {
+    display: block;
+    width: 400px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Vs:hover {
+    background-color: red;
+}
+
+
+/*
+1st Anime*/
+#pot {
+    bottom: 15%;
+    position: absolute;
+    -webkit-animation: linear;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 4s;
+}
+
+@-webkit-keyframes run {
+    0% {
+        left: 0;
+    }
+
+    48% {
+        -webkit-transform: rotateY(0deg);
+    }
+
+    50% {
+        left: calc(50% - 50px);
+        -webkit-transform: rotateY(180deg);
+    }
+
+    98% {
+        -webkit-transform: rotateY(180deg);
+    }
+
+    100% {
+        left: 0;
+        -webkit-transform: rotateY(0deg);
+    }
+}
+
+
+/*2nd Anime*/
+.Move {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 3s;
+}
+
+@keyframes example {
+    0% {
+        background-color: red;
+        left: 0px;
+        top: 0px;
+    }
+    /*25% {
+        background-color: yellow;
+        left: 200px;
+        top: 0px;
+    }*/
+
+    50% {
+        background-color: blue;
+        left: 400px;
+        -webkit-transform: rotateY(180deg);
+        /*top: 200px;*/
+    }
+    /*75% {
+        background-color: green;
+        left: 0px;
+        top: 200px;
+    }*/
+
+    100% {
+        background-color: blueviolet;
+        left: 0px;
+        top: 0px;
+    }
+}
+
+.Move2 {
+    margin-right: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    animation-name: example2;
+    animation-duration: 3s;
+    float: right;
+}
+
+@keyframes example2 {
+    0% {
+        background-color: red;
+        right: 0px;
+        top: 0px;
+    }
+    /*25% {
+        background-color: yellow;
+        left: 200px;
+        top: 0px;
+    }*/
+
+    50% {
+        background-color: blue;
+        right: 400px;
+        -webkit-transform: rotateY(180deg);
+        /*top: 200px;*/
+    }
+    /*75% {
+        background-color: green;
+        left: 0px;
+        top: 200px;
+    }*/
+
+    100% {
+        background-color: blueviolet;
+        right: 0px;
+        top: 0px;
+    }
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+#manipulate {
+    position: absolute;
+    bottom: 0px;
+    right: 50%;
+    left: 50%;
+    margin-bottom: 200px;
+}
