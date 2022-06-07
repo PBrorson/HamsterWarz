@@ -25,6 +25,7 @@
                 <img src=@ShowImage(hamster.ImgName)>
                 <td>
                     <button class="btn btn-primary" @onclick="(() => ShowHamster(hamster.Id))"><i class="oi oi-pencil"></i></button>
+                <button class="btn btn-primary" @onclick="(() => DeleteHamster(hamster.Id))"><i class="oi oi-pencil"></i></button>
                 </td>
             </tr>
         }
@@ -36,6 +37,7 @@
     protected override async Task OnInitializedAsync()
     {
         await HamsterService.GetHamsters();
+        HamsterService.OnChange += StateHasChanged;
     }
 
     void ShowHamster(int id)
@@ -53,5 +55,14 @@
     {
         imageSource = $"/hamsters/{imgName}";
         return imageSource;
+    }
+    void DeleteHamster(int id)
+    {
+        HamsterService.DeleteHamster(id);
+    }
+
+    public void Dispose()
+    {
+        HamsterService.OnChange -= StateHasChanged;
     }
 }
