@@ -1,0 +1,31 @@
+﻿<h3>Battle_Test</h3>
+@page "/Battle Test"
+@inject IHamsterService HamsterService
+@inject NavigationManager NavigationManager
+@using HamsterWarz.Client.Services;
+@code {
+      protected override async Task OnInitializedAsync()
+    {
+        await HamsterService.GetRandomHamster();
+    }
+}
+<table class="table">
+   
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Loves</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+     
+            <tr>
+                <td> @HamsterService.hamster.Name</td>
+                <td>@HamsterService.hamster.Age</td>
+                <td>@HamsterService.hamster.Loves</td>
+            </tr>    
+    </tbody>
+ </table>
+

@@ -19,6 +19,7 @@ namespace HamsterWarz.Client.Services
         }
 
         public List<Hamster> Hamsters { get; set; } = new List<Hamster>();
+        public Hamster hamster { get; set; } = new Hamster();
 
 
         public async Task CreateHamster(Hamster hamster)
@@ -64,11 +65,9 @@ namespace HamsterWarz.Client.Services
 
         public async Task GetRandomHamster()
         {
-
-            var randomHamster = await _http.GetAsync("api/Hamster/GetRandomHamster");
-
-
-
+            var result = await _http.GetFromJsonAsync<Hamster>($"api/Hamster/Hamsters/random");
+            if (result != null)
+                hamster = result;
         }
     }
 

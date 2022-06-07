@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamsterWarz.Server", "HamsterWarz\Server\HamsterWarz.Server.csproj", "{E954DEB6-8E71-4BA8-B9F2-27FE0FEAADC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamsterWarz.Server", "HamsterWarz\Server\HamsterWarz.Server.csproj", "{E954DEB6-8E71-4BA8-B9F2-27FE0FEAADC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamsterWarz.Client", "HamsterWarz\Client\HamsterWarz.Client.csproj", "{ED9A974B-EB8F-468F-9701-7431F7A9210B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamsterWarz.Client", "HamsterWarz\Client\HamsterWarz.Client.csproj", "{ED9A974B-EB8F-468F-9701-7431F7A9210B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamsterWarz.Shared", "HamsterWarz\Shared\HamsterWarz.Shared.csproj", "{50832689-AC50-4FF3-A7DC-D9B1BA603287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamsterWarz.Shared", "HamsterWarz\Shared\HamsterWarz.Shared.csproj", "{50832689-AC50-4FF3-A7DC-D9B1BA603287}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

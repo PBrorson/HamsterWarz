@@ -5,8 +5,9 @@ namespace HamsterWarz.Client.Services
     public interface IHamsterService
     {
         event Action OnChange;
-
+        
         List<Hamster> Hamsters { get; set; }
+        Hamster hamster { get; set; }
 
         Task GetRandomHamster();
         Task GetHamsters();
