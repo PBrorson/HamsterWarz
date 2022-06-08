@@ -25,7 +25,7 @@ else
                 <div class="row">
                     <div class="col-sm-4">
                         <figure>
-                            <img src="@Img1" onclick="@(()=>{Dold1(Img1); PlayAudioFile1(); WarCry = true;})" class="img-fluid img-thumbnail" alt="Responsive image" />
+                            <img src="@ShowImage(HamsterService.hamster.ImgName)" onclick="@(()=>{Dold1(Img1); PlayAudioFile1(); WarCry = true;})" class="img-fluid img-thumbnail" alt="Responsive image" />
                         </figure>
                     </div>
                     <div id="Vs" class="col-sm-4">
@@ -82,7 +82,8 @@ else
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await HamsterService.GetHamsters();
+         await HamsterService.GetRandomHamster();
+         
     }
     private string? imageSource;
         private string ShowImage(string imgName)
