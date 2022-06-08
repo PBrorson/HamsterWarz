@@ -25,7 +25,7 @@ else
                 <div class="row">
                     <div class="col-sm-4">
                         <figure>
-                            <img src="@ShowImage(HamsterService.hamster.ImgName)" onclick="@(()=>{Dold1(Img1); PlayAudioFile1(); WarCry = true;})" class="img-fluid img-thumbnail" alt="Responsive image" />
+                            <img src="@ShowImage(HamsterService.hamster.ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.hamster.ImgName)); PlayAudioFile1(); WarCry = true;})" class="img-fluid img-thumbnail" alt="Responsive image" />
                         </figure>
                     </div>
                     <div id="Vs" class="col-sm-4">
@@ -45,7 +45,7 @@ else
     <div hidden="@(!Hide2)">
         <div>
             <div class="Move inline-block">
-                <img src="@Img1" width=200px height=200px />
+                <img src="@ShowImage(HamsterService.hamster.ImgName)" width=200px height=200px />
             </div>
 
             <div class="Move2 inline-block">
@@ -82,11 +82,11 @@ else
 @code {
     protected override async Task OnInitializedAsync()
     {
-         await HamsterService.GetRandomHamster();
-         
+        await HamsterService.GetRandomHamster();
+
     }
     private string? imageSource;
-        private string ShowImage(string imgName)
+    private string ShowImage(string imgName)
     {
         imageSource = $"/hamsters/{imgName}";
         return imageSource;
@@ -191,6 +191,8 @@ else
     {
         Hide2 = !Hide2;
         Hide3 = !Hide3;
+        HamsterService.GetRandomHamster();
+     var etst=    HamsterService.hamster;
     }
 
     private void Dold3()
@@ -201,5 +203,6 @@ else
         RandomList(); //Ta bort
     }
 
+    
     
 }

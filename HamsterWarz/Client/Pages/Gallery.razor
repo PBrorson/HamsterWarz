@@ -19,8 +19,8 @@
                     <div class="card-body">
                         <h4 class="card-title">@hamster.Name</h4>
                         <p class="card-text">Favorite food: @hamster.FavFood. <br /> Likes: @hamster.Loves</p>
-                        <a href="#" class="btn btn-primary">Edit</a>
-                        <button class="btn btn-primary " @onclick="(() => DeleteHamster(hamster.Id))">
+                        
+                        <button class="btn btn-primary" onclick="@(()=>{DeleteHamster(hamster.Id);})">
                             Delete
                         </button>
                     </div>
@@ -33,6 +33,7 @@
 
 
 @code {
+
     protected override async Task OnInitializedAsync()
     {
         await HamsterService.GetHamsters();
@@ -54,4 +55,5 @@
     {
         HamsterService.OnChange -= StateHasChanged;
     }
+   
 }
