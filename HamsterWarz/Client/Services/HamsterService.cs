@@ -24,7 +24,7 @@ namespace HamsterWarz.Client.Services
 
         public async Task CreateHamster(Hamster hamster)
         {
-            var result = await _http.PostAsJsonAsync("api/hamster", hamster);
+            var result = await _http.PostAsJsonAsync("hamster", hamster);
             await SetHamsters(result);
         }
 
@@ -32,19 +32,19 @@ namespace HamsterWarz.Client.Services
         {
             var response = await result.Content.ReadFromJsonAsync<List<Hamster>>();
             Hamsters = response;
-            _navigationManager.NavigateTo("hamsters");
+            //_navigationManager.NavigateTo("hamster");
         }
 
         public async Task DeleteHamster(int id)
         {
-            var result = await _http.DeleteAsync($"api/hamster/{id}");
+            var result = await _http.DeleteAsync($"hamster/{id}");
             await SetHamsters(result);
         }
 
 
         public async Task<Hamster> GetHamster(int id)
         {
-            var result = await _http.GetFromJsonAsync<Hamster>($"api/hamster/{id}");
+            var result = await _http.GetFromJsonAsync<Hamster>($"hamster/{id}");
             if (result != null)
                 return result;
             throw new Exception("Hamster not found!");
@@ -52,22 +52,35 @@ namespace HamsterWarz.Client.Services
 
         public async Task GetHamsters()
         {
-            var result = await _http.GetFromJsonAsync<List<Hamster>>("api/hamster");
+            var result = await _http.GetFromJsonAsync<List<Hamster>>("hamster");
             if (result != null)
                 Hamsters = result;
         }
 
         public async Task UpdateHamster(Hamster hamster)
         {
-            var result = await _http.PutAsJsonAsync($"api/hamster/{hamster.Id}", hamster);
+            var result = await _http.PutAsJsonAsync($"hamster/{hamster.Id}", hamster);
             await SetHamsters(result);
         }
 
         public async Task GetRandomHamster()
         {
-            var result = await _http.GetFromJsonAsync<Hamster>($"api/Hamster/Hamsters/random");
+            var result = await _http.GetFromJsonAsync<Hamster>($"Hamster/random");
             if (result != null)
                 hamster = result;
+        }
+        public async Task CreateGame()
+        {
+            List<Hamster> hamsters = new List<Hamster>();
+            var result1 = await _http.GetFromJsonAsync<Hamster>($"Hamster/random");
+            var result2 = await _http.GetFromJsonAsync<Hamster>($"Hamster/random");
+
+            if(result1!= result2)
+            {
+                hamsters.Add(result1);
+                hamsters.Add(result2);
+            }
+            Hamsters = hamsters;
         }
     }
 

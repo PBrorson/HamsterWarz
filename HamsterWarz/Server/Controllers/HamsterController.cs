@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HamsterWarz.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class HamsterController : ControllerBase
     {
@@ -18,14 +18,12 @@ namespace HamsterWarz.Server.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Hamster>>> Get()
+        public async Task<ActionResult<List<Hamster>>> GetAll()
         {
             var hamsters = await _context.Hamsters.ToListAsync();
             return Ok(hamsters);
             
         }
-        [HttpGet("{id}")]
-
         [HttpGet("{id}")]
         public async Task<ActionResult<Hamster>> Get(int id)
         {
@@ -39,7 +37,7 @@ namespace HamsterWarz.Server.Controllers
             return Ok(hamster);
         }
         [HttpPost]
-        public async Task<ActionResult<List<Hamster>>> AddHero(Hamster hamster)
+        public async Task<ActionResult<List<Hamster>>> AddHamster(Hamster hamster)
         {
 
             _context.Hamsters.Add(hamster);
@@ -47,7 +45,7 @@ namespace HamsterWarz.Server.Controllers
 
             return Ok(await GetDbHamsters());
         }
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult<List<Hamster>>> UpdateHamster(Hamster hamster,int id)
         {
             var dbHamster = await _context.Hamsters
@@ -88,7 +86,7 @@ namespace HamsterWarz.Server.Controllers
             return await _context.Hamsters.ToListAsync();
         }
        
-        [HttpGet("Hamsters/random")]
+        [HttpGet("random")]
         public async Task<ActionResult<Hamster>> GetRandomHamster()
         {
             List<Hamster> hamsters = await _context.Hamsters.ToListAsync();
