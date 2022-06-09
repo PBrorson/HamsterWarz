@@ -8,19 +8,19 @@
 <form class="row g-3">
     <div class="col-md-4">
         <label for="validationDefault01" class="form-label">Name</label>
-        <input type="text" class="form-control" id="validationDefault01" required>
+        <input type="text" class="form-control" id="validationDefault01" @bind="Name" required>
     </div>
     <div class="col-md-4">
         <label for="validationDefault02" class="form-label">Age</label>
-        <input type="number" class="form-control" id="validationDefault02" min="1" max="4" required>
+        <input type="number" class="form-control" id="validationDefault02"@bind="Age" min="1" max="4" required>
     </div>
     <div class="col-md-6">
         <label for="validationDefault03" class="form-label">Favorite Food</label>
-        <input type="text" class="form-control" id="validationDefault03" required>
+        <input type="text" class="form-control" @bind="FavFood" id="validationDefault03" required>
     </div>
     <div class="col-md-3">
         <label for="validationDefault04" class="form-label"></label>
-        <select class="form-select" id="validationDefault04" required>
+        <select @bind="Img" class="form-select" id="validationDefault04" required>
             <option selected disabled value="">Choose image</option> @*TODO: Välj Hamster bilder*@
             <option>@HamsterService.Hamsters[0].ImgName</option>
             <option>@HamsterService.Hamsters[1].ImgName</option>
@@ -38,7 +38,7 @@
     </div>
     <div class="col-md-3">
         <label for="validationDefault05" class="form-label">Loves</label>
-        <input type="text" class="form-control" id="validationDefault05" required>
+        <input type="text" @bind="Loves" class="form-control" id="validationDefault05" required>
     </div>
     <div class="col-12">
         <button class="btn btn-primary" @onclick="(()=>{Update();})" type="submit" >Add your hamster</button>
