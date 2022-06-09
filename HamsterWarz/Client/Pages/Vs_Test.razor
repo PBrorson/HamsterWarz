@@ -36,7 +36,7 @@ else
 
                     <div class="col-sm-4 card">
                         <figure>
-                            <img src="@Img2" onclick="@(()=>{Dold1(Img2); PlayAudioFile1();})" class="img-fluid img-thumbnail" alt="Responsive image" />
+                            <img src="@ShowImage(HamsterService.Hamsters[1].ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.Hamsters[1].ImgName)); PlayAudioFile1(); update(HamsterService.Hamsters[0], false);update(HamsterService.Hamsters[1], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
                             <div class="card-body">
                                 <h4 class="card-title">@HamsterService.hamster.Name</h4> @*TODO: Lägg till index*@
                                 <p class="card-text">Age: @HamsterService.hamster.Age</p>@*TODO: Lägg till index*@
@@ -75,7 +75,7 @@ else
 
         <h2>You Win!!!!</h2> <br />
         <div class="WinCard">
-            <div class="card" style="width:100">
+            <div class="card" style="width:100px">
                 <img src="@Temp" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
                 <div class="card-body">
                     <h4 class="card-title">@HamsterService.hamster.Name</h4> @*TODO: Lägg till index*@
