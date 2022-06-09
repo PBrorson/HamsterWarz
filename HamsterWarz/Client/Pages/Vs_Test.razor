@@ -1,15 +1,10 @@
 ﻿@page "/Vs_Test"
+@using HamsterWarz.Shared
 @inject IJSRuntime js;
 @inject NavigationManager NavManager
 @inject IHamsterService HamsterService
 
 <link rel="stylesheet" type="text/css" href="css/app.css?version=0.1">
-
-@if (MyList1 == null)
-{
-    MyListOfStuff();
-    RandomList();
-}
 @if (Klar)
 {
     GåTill();
@@ -48,6 +43,7 @@ else
                                 <p class="card-text">Age: @HamsterService.hamster.Loves</p>@*TODO: Lägg till index*@
                                 <p class="card-text">Age: @HamsterService.hamster.FavFood</p>@*TODO: Lägg till index*@
                             </div>
+                            <img src="@ShowImage(HamsterService.Hamsters[1].ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.Hamsters[1].ImgName)); PlayAudioFile1(); update(HamsterService.Hamsters[0], false);update(HamsterService.Hamsters[1], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
                         </figure>
                     </div>
                 </div>
@@ -63,7 +59,7 @@ else
             </div>
 
             <div class="Move2 inline-block">
-                <img src="@Img2" width=200px height=200px />
+                <img src="@ShowImage(HamsterService.Hamsters[1].ImgName)" width=200px height=200px />
             </div>
         </div>
 
@@ -88,9 +84,7 @@ else
                 </div>
             </div>
         </div>
-
     </div>
-
 }
 
 
@@ -108,13 +102,12 @@ else
     }
 
 
-    private string Img1;//Ta bort
-    private string Img2;//Ta bort
     private string Temp;
     private bool Hide1 { get; set; } = false;
     private bool Hide2 { get; set; } = false;
     private bool Hide3 { get; set; } = false;
     private bool WarCry { get; set; } = false;
+    private bool Won { get; set; } = false;
     private bool Klar = false;
     private Animate myAnim;
     private Random random = new Random();
@@ -135,59 +128,6 @@ else
         myAnim.Run();
     }
 
-    private List<string> MyList1 { get; set; }//Ta bort
-
-    private void MyListOfStuff()//Ta bort
-    {
-        var hamsterlist1 = new List<string>();
-        string bild;
-        bool loop = true;
-
-        while (loop)
-        {
-            bild = $"hamsters/hamster-{random.Next(1, 11)}.jpg";
-            if (!hamsterlist1.Contains(bild) && hamsterlist1.Count <= 10)
-            {
-                hamsterlist1.Add(bild);
-
-                if (hamsterlist1.Count == 10)
-                {
-                    MyList1 = hamsterlist1;
-                    loop = false;
-                }
-            }
-        }
-    }
-
-    private void RandomList()//Ta bort
-    {
-        var random = new Random();
-        bool loop = true;
-
-        int indexImg1;
-        int indexImg2;
-
-        while (loop)
-        {
-            indexImg1 = random.Next(MyList1.Count);
-            indexImg2 = random.Next(MyList1.Count);
-
-            if (indexImg1 != indexImg2)
-            {
-                Img1 = MyList1[indexImg1];
-                Img2 = MyList1[indexImg2];
-
-                if (MyList1.Count == 2)
-                {
-
-                    Klar = true;
-                }
-                loop = false;
-            }
-        }
-        MyList1.Remove(Img1);
-        MyList1.Remove(Img2);
-    }
 
     private void GåTill()
     {
@@ -206,6 +146,7 @@ else
     {
         Hide2 = !Hide2;
         Hide3 = !Hide3;
+        HamsterService.CreateGame();
     }
 
     private void Dold3()
@@ -213,7 +154,6 @@ else
         Hide1 = !Hide1;
         Hide3 = !Hide3;
         WarCry = false;
-        RandomList(); //Ta bort
     }
 
 

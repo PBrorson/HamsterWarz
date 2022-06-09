@@ -8,7 +8,7 @@ namespace HamsterWarz.Client.Services
         
         List<Hamster> Hamsters { get; set; }
         Hamster hamster { get; set; }
-
+        Task CreateGame();
         Task GetRandomHamster();
         Task GetHamsters();
         Task<Hamster> GetHamster(int id);
