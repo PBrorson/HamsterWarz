@@ -20,12 +20,12 @@ else
                 <div class="row">
                     <div class="col-sm-4 card">
                         <figure>
-                            <img src="@ShowImage(HamsterService.hamster.ImgName)" onclick="@(()=>{Dold1(ShowImage(HamsterService.hamster.ImgName)); PlayAudioFile1(); WarCry = true;})" class="img-fluid img-thumbnail" alt="Responsive image" />
+                            <img src="@ShowImage(HamsterService.Hamsters[0].ImgName)" onclick="@(()=>{Dold1(ShowImage(HamsterService.Hamsters[0].ImgName)); PlayAudioFile1(); Won=true; WarCry = true;update(HamsterService.Hamsters[1], false);update(HamsterService.Hamsters[0], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
                             <div class="card-body">
-                                <h4 class="card-title">@HamsterService.hamster.Name</h4> @*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.hamster.Age</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.hamster.Loves</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.hamster.FavFood</p>@*TODO: Lägg till index*@
+                                <h4 class="card-title">@HamsterService.Hamsters[0].Name</h4> @*TODO: Lägg till index*@
+                                <p class="card-text">Age: @HamsterService.Hamsters[0].Age</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Age: @HamsterService.Hamsters[0].Loves</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Age: @HamsterService.Hamsters[0].FavFood</p>@*TODO: Lägg till index*@
                             </div>
                         </figure>
                     </div>
@@ -38,12 +38,11 @@ else
                         <figure>
                             <img src="@ShowImage(HamsterService.Hamsters[1].ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.Hamsters[1].ImgName)); PlayAudioFile1(); update(HamsterService.Hamsters[0], false);update(HamsterService.Hamsters[1], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
                             <div class="card-body">
-                                <h4 class="card-title">@HamsterService.hamster.Name</h4> @*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.hamster.Age</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.hamster.Loves</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.hamster.FavFood</p>@*TODO: Lägg till index*@
+                                <h4 class="card-title">@HamsterService.Hamsters[1].Name</h4> @*TODO: Lägg till index*@
+                                <p class="card-text">Age: @HamsterService.Hamsters[1].Age</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Age: @HamsterService.Hamsters[1].Loves</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Age: @HamsterService.Hamsters[1].FavFood</p>@*TODO: Lägg till index*@
                             </div>
-                            <img src="@ShowImage(HamsterService.Hamsters[1].ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.Hamsters[1].ImgName)); PlayAudioFile1(); update(HamsterService.Hamsters[0], false);update(HamsterService.Hamsters[1], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
                         </figure>
                     </div>
                 </div>
@@ -55,7 +54,7 @@ else
     <div hidden="@(!Hide2)">
         <div>
             <div class="Move inline-block">
-                <img src="@ShowImage(HamsterService.hamster.ImgName)" width=200px height=200px />
+                <img src="@ShowImage(HamsterService.Hamsters[0].ImgName)" width=200px height=200px />
             </div>
 
             <div class="Move2 inline-block">
@@ -70,20 +69,43 @@ else
         </div>
     </div>
 
+    if (Won == false)
+    {
+        hamster1 = HamsterService.Hamsters[1];
+        hamster2 = HamsterService.Hamsters[0];
+    }
+    else
+    {
+        hamster1 = HamsterService.Hamsters[0];
+        hamster2 = HamsterService.Hamsters[1];
+
+    }
 
     <div hidden="@(!Hide3)" class="text-center">
 
         <h2>You Win!!!!</h2> <br />
         <div class="WinCard">
-            <div class="card" style="width:100px">
-                <img src="@Temp" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
+            <div class="card" style="width:100">
+                <img src="@ShowImage(hamster1.ImgName)" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
                 <div class="card-body">
-                    <h4 class="card-title">@HamsterService.hamster.Name</h4> @*TODO: Lägg till index*@
-                    <p class="card-text">@HamsterService.hamster.Wins</p> @*TODO: Lägg till index*@
-                    <p class="card-text">@HamsterService.hamster.Losses</p> @*TODO: Lägg till index*@
+                    <h4 class="card-title">@hamster1.Name</h4> @*TODO: Lägg till index*@
+                    <p class="card-text">@hamster1.Wins</p> @*TODO: Lägg till index*@
+                    <p class="card-text">@hamster1.Losses</p> @*TODO: Lägg till index*@
                 </div>
             </div>
         </div>
+        <h2>You Lose!!!!</h2> <br />
+        <div class="WinCard">
+            <div class="card" style="width:100">
+                <img src="@Temp" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
+                <div class="card-body">
+                    <h4 class="card-title">@hamster2.Name</h4> @*TODO: Lägg till index*@
+                    <p class="card-text">@hamster2.Wins</p> @*TODO: Lägg till index*@
+                    <p class="card-text">@hamster2.Losses</p> @*TODO: Lägg till index*@
+                </div>
+            </div>
+        </div>
+
     </div>
 }
 
@@ -91,7 +113,24 @@ else
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await HamsterService.GetRandomHamster();
+        await HamsterService.CreateGame();
+
+    }
+
+    private void update(Hamster hamster, bool won)
+    {
+        if (won == true)
+        {
+            hamster.Games += 1;
+            hamster.Wins += 1;
+            HamsterService.UpdateHamster(hamster);
+        }
+        else
+        {
+            hamster.Games += 1;
+            hamster.Losses += 1;
+            HamsterService.UpdateHamster(hamster);
+        }
 
     }
     private string? imageSource;
@@ -101,7 +140,8 @@ else
         return imageSource;
     }
 
-
+    private Hamster hamster1 { get; set; }
+    private Hamster hamster2 { get; set; }
     private string Temp;
     private bool Hide1 { get; set; } = false;
     private bool Hide2 { get; set; } = false;
@@ -146,7 +186,7 @@ else
     {
         Hide2 = !Hide2;
         Hide3 = !Hide3;
-        HamsterService.CreateGame();
+
     }
 
     private void Dold3()
