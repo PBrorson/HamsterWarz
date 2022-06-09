@@ -32,7 +32,7 @@ namespace HamsterWarz.Client.Services
         {
             var response = await result.Content.ReadFromJsonAsync<List<Hamster>>();
             Hamsters = response;
-            //_navigationManager.NavigateTo("hamster");
+            //_navigationManager.NavigateTo("/");
         }
 
         public async Task DeleteHamster(int id)

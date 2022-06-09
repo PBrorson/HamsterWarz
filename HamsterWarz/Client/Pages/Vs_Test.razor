@@ -3,7 +3,7 @@
 @inject IJSRuntime js;
 @inject NavigationManager NavManager
 @inject IHamsterService HamsterService
-
+<PageTitle>HamsterWarz</PageTitle>
 <link rel="stylesheet" type="text/css" href="css/app.css?version=0.1">
 @if (Klar)
 {
@@ -20,12 +20,13 @@ else
                 <div class="row">
                     <div class="col-sm-4 card">
                         <figure>
-                            <img src="@ShowImage(HamsterService.GameHamster[0].ImgName)" onclick="@(()=>{Dold1(ShowImage(HamsterService.GameHamster[0].ImgName)); PlayAudioFile1(); Won=true; WarCry = true;update(HamsterService.GameHamster[1], false);update(HamsterService.GameHamster[0], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
+                            <img src="@ShowImage(HamsterService.GameHamster[0].ImgName)" onclick="@(()=>{Dold1(ShowImage(HamsterService.GameHamster[0].ImgName)); PlayAudioFile1(); Won=true; WarCry = true;update(HamsterService.GameHamster[1], false);
+                                update(HamsterService.GameHamster[0], true); Hamster1Winner = false;})" class="img-fluid img-thumbnail" alt="Responsive image" />
                             <div class="card-body">
                                 <h4 class="card-title">@HamsterService.GameHamster[0].Name</h4> @*TODO: Lägg till index*@
                                 <p class="card-text">Age: @HamsterService.GameHamster[0].Age</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.GameHamster[0].Loves</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.GameHamster[0].FavFood</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Loves: @HamsterService.GameHamster[0].Loves</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Favorite Food: @HamsterService.GameHamster[0].FavFood</p>@*TODO: Lägg till index*@
                             </div>
                         </figure>
                     </div>
@@ -36,12 +37,13 @@ else
 
                     <div class="col-sm-4 card">
                         <figure>
-                            <img src="@ShowImage(HamsterService.GameHamster[1].ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.GameHamster[1].ImgName)); PlayAudioFile1(); update(HamsterService.GameHamster[0], false);update(HamsterService.GameHamster[1], true);})" class="img-fluid img-thumbnail" alt="Responsive image" />
+                            <img src="@ShowImage(HamsterService.GameHamster[1].ImgName)" onclick="@(()=>{Dold1(@ShowImage(HamsterService.GameHamster[1].ImgName)); PlayAudioFile1();
+                                update(HamsterService.GameHamster[0], false);update(HamsterService.GameHamster[1], true);Hamster2Winner = false;})" class="img-fluid img-thumbnail" alt="Responsive image" />
                             <div class="card-body">
                                 <h4 class="card-title">@HamsterService.GameHamster[1].Name</h4> @*TODO: Lägg till index*@
                                 <p class="card-text">Age: @HamsterService.GameHamster[1].Age</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.GameHamster[1].Loves</p>@*TODO: Lägg till index*@
-                                <p class="card-text">Age: @HamsterService.GameHamster[1].FavFood</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Loves: @HamsterService.GameHamster[1].Loves</p>@*TODO: Lägg till index*@
+                                <p class="card-text">Favorite Food: @HamsterService.GameHamster[1].FavFood</p>@*TODO: Lägg till index*@
                             </div>
                         </figure>
                     </div>
@@ -71,32 +73,51 @@ else
 
    
 
-    <div hidden="@(!Hide3)" class="text-center">
-        
-        <h2>You Win!!!!</h2> <br />
-        <div class="WinCard">
-            <div class="card" style="width:100">
-                <img src="@ShowImage(HamsterService.GameHamster[0].ImgName)" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
-                <div class="card-body">
-                    <h4 class="card-title">@HamsterService.GameHamster[0].Name</h4> @*TODO: Lägg till index*@
-                    <p class="card-text">@HamsterService.GameHamster[0].Wins</p> @*TODO: Lägg till index*@
-                    <p class="card-text">@HamsterService.GameHamster[0].Losses</p> @*TODO: Lägg till index*@
+      <div hidden="@(!Hide3)">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div hidden="@Hamster1Winner" class="text-center">
+                        <h3>
+                            Winner
+                        </h3>
+                    </div>
+                    <div class="WinCard">
+                        <div class="card" style="width:100">
+                            <img src="@ShowImage(HamsterService.GameHamster[0].ImgName)" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
+                            <div class="card-body">
+                                <h4 class="card-title">@HamsterService.GameHamster[0].Name</h4>
+                                <p class="card-text">Wins: @HamsterService.GameHamster[0].Wins</p>
+                                <p class="card-text">Losses: @HamsterService.GameHamster[0].Losses</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+                <div class="col-sm-6">
+                    <div hidden="@Hamster2Winner" class="text-center">
+                        <h3>
+                            Winner
+                        </h3>
+                    </div>
+                    <div class="WinCard">
+                        <div class="card" style="width:100">
+                            <img src="@ShowImage(HamsterService.GameHamster[1].ImgName)" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
+                            <div class="card-body">
+                                          <h4 class="card-title">@HamsterService.GameHamster[1].Name</h4>
+                                <p class="card-text">Wins: @HamsterService.GameHamster[1].Wins</p>
+                                <p class="card-text">Losses: @HamsterService.GameHamster[1].Losses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <h2>You Lose!!!!</h2> <br />
-        <div class="WinCard">
-            <div class="card" style="width:100">
-                <img src="@ShowImage(HamsterService.GameHamster[1].ImgName)" onclick="@(()=>{Dold3(); /*PlayAudioFile2()*/;})" class="card-img-top" />
-                <div class="card-body">
-                    <h4 class="card-title">@HamsterService.GameHamster[1].Name</h4> @*TODO: Lägg till index*@
-                    <p class="card-text">@HamsterService.GameHamster[1].Wins</p> @*TODO: Lägg till index*@
-                    <p class="card-text">@HamsterService.GameHamster[1].Losses</p> @*TODO: Lägg till index*@
-                </div>
-            </div>
-        </div>
-   
     </div>
+
 }
 
 
@@ -138,6 +159,8 @@ else
     private bool Hide3 { get; set; } = false;
     private bool WarCry { get; set; } = false;
     private bool Won { get; set; } = false;
+    private bool Hamster1Winner { get; set; } = true;
+    private bool Hamster2Winner { get; set; } = true;
     private bool Klar = false;
     private Animate myAnim;
     private Random random = new Random();
@@ -176,7 +199,7 @@ else
     {
         Hide2 = !Hide2;
         Hide3 = !Hide3;
-       
+        HamsterService.CreateGame();
     }
 
     private void Dold3()
@@ -184,6 +207,8 @@ else
         Hide1 = !Hide1;
         Hide3 = !Hide3;
         WarCry = false;
+        Hamster1Winner = true;
+        Hamster2Winner = true;
     }
 
 
