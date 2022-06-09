@@ -21,7 +21,7 @@ namespace HamsterWarz.Client.Services
         public List<Hamster> Hamsters { get; set; } = new List<Hamster>();
         public Hamster hamster { get; set; } = new Hamster();
 
-
+        public List<Hamster> GameHamster { get; set; } = new List<Hamster>();
         public async Task CreateHamster(Hamster hamster)
         {
             var result = await _http.PostAsJsonAsync("hamster", hamster);
@@ -80,7 +80,7 @@ namespace HamsterWarz.Client.Services
                 hamsters.Add(result1);
                 hamsters.Add(result2);
             }
-            Hamsters = hamsters;
+            GameHamster = hamsters;
         }
     }
 
