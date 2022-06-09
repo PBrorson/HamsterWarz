@@ -47,6 +47,7 @@
     void DeleteHamster(int id)
     {
         HamsterService.DeleteHamster(id);
+        NavigationManager.NavigateTo("/");
     }
 
     public void Dispose()
