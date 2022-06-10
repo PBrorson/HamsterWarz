@@ -3,9 +3,8 @@
 
 <PageTitle>Gallery</PageTitle>
 
-<button>
-    Test
-</button>
+<a href="/AddHamster"><button class="glow-on-hover" type="button">Add New Hamster</button></a>
+
 <br />
 <br />
 <div class="row">
@@ -47,6 +46,7 @@
     void DeleteHamster(int id)
     {
         HamsterService.DeleteHamster(id);
+        NavigationManager.NavigateTo("/");
     }
 
     public void Dispose()

@@ -1,0 +1,70 @@
+﻿@page "/AddHamster"
+@using HamsterWarz.Shared
+@inject IHamsterService HamsterService
+
+<h3>AddHamster</h3>
+
+
+<form class="row g-3">
+    <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Name</label>
+        <input type="text" class="form-control" id="validationDefault01" @bind="Name" required>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Age</label>
+        <input type="number" class="form-control" id="validationDefault02"@bind="Age" min="1" max="4" required>
+    </div>
+    <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Favorite Food</label>
+        <input type="text" class="form-control" @bind="FavFood" id="validationDefault03" required>
+    </div>
+    <div class="col-md-3">
+        <label for="validationDefault04" class="form-label"></label>
+        <select @bind="Img" class="form-select" id="validationDefault04" required>
+            <option selected disabled value="">Choose image</option> @*TODO: Välj Hamster bilder*@
+            <option>@HamsterService.Hamsters[0].ImgName</option>
+            <option>@HamsterService.Hamsters[1].ImgName</option>
+            <option>@HamsterService.Hamsters[2].ImgName</option>
+            <option>@HamsterService.Hamsters[3].ImgName</option>
+            <option>@HamsterService.Hamsters[4].ImgName</option>
+            <option>@HamsterService.Hamsters[5].ImgName</option>
+            <option>@HamsterService.Hamsters[6].ImgName</option>
+            <option>@HamsterService.Hamsters[7].ImgName</option>
+            <option>@HamsterService.Hamsters[8].ImgName</option>
+            <option>@HamsterService.Hamsters[9].ImgName</option>
+            <option>@HamsterService.Hamsters[10].ImgName</option>
+            <option>@HamsterService.Hamsters[11].ImgName</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="validationDefault05" class="form-label">Loves</label>
+        <input type="text" @bind="Loves" class="form-control" id="validationDefault05" required>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" @onclick="(()=>{Update();})" type="submit" >Add your hamster</button>
+    </div>
+</form>
+
+
+
+@code {
+    private string Name { get; set; }
+    private int Age { get; set; }
+    public string FavFood { get; set; }
+    public string Loves { get; set; }
+    public string Img { get; set; }
+    private async Task Update()
+    {
+        Hamster hamster = new();
+        hamster.Name = Name;
+        hamster.Age = Age;
+        hamster.FavFood = FavFood;
+        hamster.Loves = Loves;
+        hamster.ImgName = Img;
+        hamster.Wins = 0;
+        hamster.Losses = 0;
+        hamster.Games = 0;
+        await HamsterService.CreateHamster(hamster);
+
+    }
+}

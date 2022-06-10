@@ -6,8 +6,11 @@ namespace HamsterWarz.Client.Services
     {
         event Action OnChange;
 
-        List<Hamster> Hamsters { get; set; }
 
+        List<Hamster> GameHamster { get; set; }
+        List<Hamster> Hamsters { get; set; }
+        Hamster hamster { get; set; }
+        Task CreateGame();
         Task GetRandomHamster();
         Task GetHamsters();
         Task<Hamster> GetHamster(int id);
